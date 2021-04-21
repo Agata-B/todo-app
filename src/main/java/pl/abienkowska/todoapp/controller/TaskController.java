@@ -9,6 +9,7 @@ import pl.abienkowska.todoapp.model.Task;
 import pl.abienkowska.todoapp.model.TaskRepository;
 
 import javax.validation.Valid;
+import java.net.URI;
 import java.util.List;
 
 
@@ -22,10 +23,23 @@ class TaskController {
         this.repository = repository;
     }
 
+    @PostMapping("/tasks")
+    ResponseEntity<Task> createTask (@RequestBody @Valid Task toCreate) {
+        Task result = repository.save(toCreate);
+        return ResponseEntity.created(URI.create("/"+result.getId())).body(result);
+    }
+
     @GetMapping(value = "/tasks", params = {"!sort", "!page", "!size"})
     ResponseEntity<List<Task>> readAllTasks(){
         logger.warn("Exposing all the tasks !");
         return ResponseEntity.ok(repository.findAll());
+    }
+    @GetMapping("tasks/{id}")
+    ResponseEntity<Task> readOneTasks(@PathVariable int id){
+        logger.warn("Read one task!");
+        return repository.findById(id)
+                .map(task -> ResponseEntity.ok(task))
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping
