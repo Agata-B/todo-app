@@ -250,3 +250,43 @@ Wrong user name or password [28000-200]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:461)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
 	... 55 more
+2021-05-16 17:49:36 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabela "TASK" nie istnieje
+Table "TASK" not found; SQL statement:
+select task0_.id as id1_0_, task0_.description as descript2_0_, task0_.done as done3_0_ from task task0_ [42102-200]
+2021-05-16 17:49:45 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabela "TASK" nie istnieje
+Table "TASK" not found; SQL statement:
+select task0_.id as id1_0_, task0_.description as descript2_0_, task0_.done as done3_0_ from task task0_ limit ? [42102-200]
+2021-05-16 17:50:54 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabela "TASK" nie istnieje
+Table "TASK" not found; SQL statement:
+select task0_.id as id1_0_, task0_.description as descript2_0_, task0_.done as done3_0_ from task task0_ [42102-200]
+2021-05-16 17:51:37 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabela "TASK" nie istnieje
+Table "TASK" not found; SQL statement:
+select task0_.id as id1_0_, task0_.description as descript2_0_, task0_.done as done3_0_ from task task0_ [42102-200]
+2021-05-16 17:52:04 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabela "TASK" nie istnieje
+Table "TASK" not found; SQL statement:
+select task0_.id as id1_0_, task0_.description as descript2_0_, task0_.done as done3_0_ from task task0_ [42102-200]
+2021-05-16 17:52:06 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabela "TASK" nie istnieje
+Table "TASK" not found; SQL statement:
+select task0_.id as id1_0_, task0_.description as descript2_0_, task0_.done as done3_0_ from task task0_ [42102-200]
+2021-05-16 17:54:12 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabela "TASK" nie istnieje
+Table "TASK" not found; SQL statement:
+select task0_.id as id1_0_, task0_.description as descript2_0_, task0_.done as done3_0_ from task task0_ [42102-200]
+2021-05-16 17:54:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabela "TASK" nie istnieje
+Table "TASK" not found; SQL statement:
+select task0_.id as id1_0_0_, task0_.description as descript2_0_0_, task0_.done as done3_0_0_ from task task0_ where task0_.id=? [42102-200]
+2021-05-16 17:56:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabela "TASK" nie istnieje
+Table "TASK" not found; SQL statement:
+insert into task (id, description, done) values (null, ?, ?) [42102-200]
+2021-05-16 18:05:51 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabela "TASKS" nie istnieje
+Table "TASKS" not found; SQL statement:
+insert into tasks (id, description, done) values (null, ?, ?) [42102-200]
