@@ -17,6 +17,9 @@ public class TaskGroup {
     private boolean done;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
     private Set<Task> tasks;
+    @ManyToOne
+    @JoinColumn(name = "project_id")
+    private Project project;
 
     public TaskGroup(){
     }
@@ -27,7 +30,7 @@ public class TaskGroup {
 
     public String getDescription() {return description;}
 
-    void setDescription (final String description) {this.description = description;}
+    public void setDescription (final String description) {this.description = description;}
 
     public boolean isDone() {return done;}
 
@@ -39,16 +42,15 @@ public class TaskGroup {
         return tasks;
     }
 
-    void setTasks(Set<Task> tasks) {
+    public void setTasks(Set<Task> tasks) {
         this.tasks = tasks;
     }
 
-    public void updateFrom (final TaskGroup source) {
-        description = source.description;
-        done = source.done;
+    Project getProject() {
+        return project;
     }
 
-
-
-
+    void setProject(Project project) {
+        this.project = project;
+    }
 }
