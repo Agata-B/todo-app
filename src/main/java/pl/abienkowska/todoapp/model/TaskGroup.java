@@ -15,6 +15,7 @@ public class TaskGroup {
     @NotBlank(message = "Task group's description must not be empty")
     private String description;
     private boolean done;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
     private Set<Task> tasks;
 
