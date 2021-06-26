@@ -11,7 +11,7 @@ public class Task {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private  int id;
-    @NotBlank(message = "Tasks description must not be empty")
+    @NotBlank(message = "Task's description must not be empty")
     private String description;
     private boolean done;
     private LocalDateTime deadline;
@@ -44,6 +44,10 @@ public class Task {
 
     TaskGroup getGroup() {
         return group;
+    }
+
+    void setGroup(TaskGroup group) {
+        this.group = group;
     }
 
     public void updateFrom (final Task source) {
