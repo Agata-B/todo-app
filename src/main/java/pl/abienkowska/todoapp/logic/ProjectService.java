@@ -23,17 +23,17 @@ public class ProjectService {
         this.config = config;
     }
 
-    public List<Project> readAll(){
+    public List<Project> readAll() {
         return repository.findAll();
     }
 
-    public Project save(final Project toSave){
+    public Project save(final Project toSave) {
         return repository.save(toSave);
     }
 
     public GroupReadModel createGroup(LocalDateTime deadline, int projectId) {
         if (!config.getTemplate().isAllowMultipleTasks() && taskGroupRepository.existsByDoneIsFalseAndProject_Id(projectId)) {
-            throw new IllegalArgumentException("Only one group from project is allowed.");
+            throw new IllegalStateException("Only one undone group from project is allowed.");
         }
         TaskGroup result = repository.findById(projectId)
                 .map(project -> {
