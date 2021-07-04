@@ -25,18 +25,19 @@ class TaskController {
     }
 
     @PostMapping("/tasks")
-    ResponseEntity<Task> createTask (@RequestBody @Valid Task toCreate) {
+    ResponseEntity<Task> createTask(@RequestBody @Valid Task toCreate) {
         Task result = repository.save(toCreate);
-        return ResponseEntity.created(URI.create("/"+result.getId())).body(result);
+        return ResponseEntity.created(URI.create("/" + result.getId())).body(result);
     }
 
     @GetMapping(value = "/tasks", params = {"!sort", "!page", "!size"})
-    ResponseEntity<List<Task>> readAllTasks(){
+    ResponseEntity<List<Task>> readAllTasks() {
         logger.warn("Exposing all the tasks !");
         return ResponseEntity.ok(repository.findAll());
     }
+
     @GetMapping("tasks/{id}")
-    ResponseEntity<Task> readOneTasks(@PathVariable int id){
+    ResponseEntity<Task> readOneTasks(@PathVariable int id) {
         logger.warn("Read one task!");
         return repository.findById(id)
                 .map(task -> ResponseEntity.ok(task))
@@ -44,14 +45,14 @@ class TaskController {
     }
 
     @GetMapping
-    ResponseEntity<List<Task>> readAllTasks(Pageable page){
+    ResponseEntity<List<Task>> readAllTasks(Pageable page) {
         logger.warn("Custom pageable");
         return ResponseEntity.ok(repository.findAll(page).getContent());
     }
 
     @Transactional
     @PutMapping("tasks/{id}")
-    public ResponseEntity<?> updateTask(@PathVariable int id, @RequestBody @Valid Task toUpdate ) {
+    public ResponseEntity<?> updateTask(@PathVariable int id, @RequestBody @Valid Task toUpdate) {
         if (!repository.existsById(id)) {
             return ResponseEntity.notFound().build();
         }
@@ -67,7 +68,7 @@ class TaskController {
             return ResponseEntity.notFound().build();
         }
         repository.findById(id)
-                 .ifPresent(task -> task.setDone(!task.isDone()));
+                .ifPresent(task -> task.setDone(!task.isDone()));
         return ResponseEntity.noContent().build();
     }
 
