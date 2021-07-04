@@ -82,7 +82,7 @@ class ProjectServiceTest {
         //given
         var today = LocalDate.now().atStartOfDay();
         //and
-        var project =  projectWith("vacation", Set.of(-1, -2));
+        var project = projectWith("vacation", Set.of(-1, -2));
         var mockRepository = mock(ProjectRepository.class);
         when(mockRepository.findById(anyInt()))
                 .thenReturn(Optional.of(project));
