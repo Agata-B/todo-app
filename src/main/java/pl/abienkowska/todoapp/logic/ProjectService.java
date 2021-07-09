@@ -1,16 +1,13 @@
 package pl.abienkowska.todoapp.logic;
 
-import org.springframework.stereotype.Service;
 import pl.abienkowska.todoapp.TaskConfigurationProperties;
 import pl.abienkowska.todoapp.model.*;
 import pl.abienkowska.todoapp.model.projection.GroupReadModel;
 
-import javax.swing.*;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
 public class ProjectService {
 
     private ProjectRepository repository;
