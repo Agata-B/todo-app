@@ -45,7 +45,7 @@ public class GroupReadModel {
         return tasks;
     }
 
-    public void setTasks(Set<GroupTaskReadModel> tasks) {
+    public void setTasks(final Set<GroupTaskReadModel> tasks) {
         this.tasks = tasks;
     }
 }

@@ -54,6 +54,11 @@ public class TestConfiguration {
             public Task save(Task entity) {
                 return tasks.put(tasks.size() + 1, entity);
             }
+
+            @Override
+            public List<Task> findAllByGroupId(Integer groupId) {
+                return List.of();
+            }
         };
     }
 
