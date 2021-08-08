@@ -2,7 +2,6 @@ package pl.abienkowska.todoapp.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +15,7 @@ import java.util.List;
 
 
 @RestController
+@RequestMapping("/tasks")
 class TaskController {
 
     private static final Logger logger = LoggerFactory.getLogger(TaskController.class);
@@ -25,19 +25,19 @@ class TaskController {
         this.repository = repository;
     }
 
-    @PostMapping("/tasks")
+    @PostMapping
     ResponseEntity<Task> createTask(@RequestBody @Valid Task toCreate) {
         Task result = repository.save(toCreate);
         return ResponseEntity.created(URI.create("/" + result.getId())).body(result);
     }
 
-    @GetMapping(value = "/tasks", params = {"!sort", "!page", "!size"})
+    @GetMapping(params = {"!sort", "!page", "!size"})
     ResponseEntity<List<Task>> readAllTasks() {
         logger.warn("Exposing all the tasks !");
         return ResponseEntity.ok(repository.findAll());
     }
 
-    @GetMapping("tasks/{id}")
+    @GetMapping("/{id}")
     ResponseEntity<Task> readOneTasks(@PathVariable int id) {
         logger.warn("Read one task!");
         return repository.findById(id)
@@ -51,8 +51,15 @@ class TaskController {
         return ResponseEntity.ok(repository.findAll(page).getContent());
     }
 
+    @GetMapping("/search/done")
+    ResponseEntity<List<Task>> readDoneTasks(@RequestParam(defaultValue = "true") boolean state) {
+        return ResponseEntity.ok(
+                repository.findByDone(state)
+        );
+    }
+
     @Transactional
-    @PutMapping("tasks/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<?> updateTask(@PathVariable int id, @RequestBody @Valid Task toUpdate) {
         if (!repository.existsById(id)) {
             return ResponseEntity.notFound().build();
@@ -63,7 +70,7 @@ class TaskController {
     }
 
     @Transactional
-    @PatchMapping("tasks/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<?> toggleTask(@PathVariable int id) {
         if (!repository.existsById(id)) {
             return ResponseEntity.notFound().build();

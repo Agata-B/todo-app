@@ -27,6 +27,7 @@ public class Task {
     public Task(String description, LocalDateTime deadline){
         this(description, deadline, null);
     }
+
     public Task(String description, LocalDateTime deadline, TaskGroup group){
         this.description = description;
         this.deadline = deadline;
@@ -34,6 +35,9 @@ public class Task {
             this.group = group;
         }
     }
+
+
+
 
 
     public int getId() {return id;}
