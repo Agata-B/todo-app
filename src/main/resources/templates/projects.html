@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo App: projects</title>
+    <link rel="stylesheet" href="https://igoradamenko.github.io/awsm.css/css/awsm_theme_tasman.css">
+</head>
+<body>
+<main>
+    <!--/*@thymesVar id="project" type="pl.abienkowska.todoapp.model.projection.ProjectWriteModel"*/-->
+    <form action="#" method="post" th:action="@{/projects}" th:object="${project}">
+        <fieldset>
+            <legend>Nowy projekt</legend>
+            <label>Opis
+                <input type="text" th:field="*{description}"/>
+            </label>
+        </fieldset>
+    </form>
+</main>
+</body>
+</html>
