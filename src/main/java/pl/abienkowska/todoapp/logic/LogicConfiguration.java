@@ -15,14 +15,16 @@ class LogicConfiguration {
     ProjectService service(
             final ProjectRepository repository,
             final TaskGroupRepository taskGroupRepository,
-            final TaskConfigurationProperties config) {
-        return new ProjectService(repository, taskGroupRepository, config);
+            final TaskGroupService taskGroupService,
+            final TaskConfigurationProperties config
+    ) {
+        return new ProjectService(repository, taskGroupRepository, taskGroupService, config);
     }
 
     @Bean
     TaskGroupService taskGroupService(
             final TaskGroupRepository taskGroupRepository,
-            @Qualifier("sqlTaskRepository") final TaskRepository taskRepository){
+            @Qualifier("sqlTaskRepository") final TaskRepository taskRepository) {
         return new TaskGroupService(taskGroupRepository, taskRepository);
     }
 }
