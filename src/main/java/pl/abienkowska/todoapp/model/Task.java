@@ -36,10 +36,6 @@ public class Task {
         }
     }
 
-
-
-
-
     public int getId() {return id;}
 
     void setId(final int id) {this.id = id;}
