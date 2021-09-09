@@ -1,5 +1,6 @@
 package pl.abienkowska.todoapp.controller;
 
+import io.micrometer.core.annotation.Timed;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +21,7 @@ public class ProjectController {
 
     private final ProjectService service;
 
-    public ProjectController(ProjectService service) {
+    public ProjectController(final ProjectService service) {
         this.service = service;
     }
 
@@ -43,7 +44,7 @@ public class ProjectController {
         }
         service.save(current);
         model.addAttribute("project", new ProjectWriteModel());
-        model.addAttribute("project", getProjects());
+        model.addAttribute("projects", getProjects());
         model.addAttribute("message", "Dodano projekt.");
         return "projects";
 
@@ -56,6 +57,7 @@ public class ProjectController {
         return "projects";
     }
 
+    @Timed(value = "project.create.group", histogram = false, percentiles = {0.5, 0.95, 0.99})
     @PostMapping("/{id}")
     String createGroup(
             @ModelAttribute("project") ProjectWriteModel current,
